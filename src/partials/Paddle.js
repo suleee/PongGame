@@ -1,18 +1,41 @@
 import { SVG_NS } from '../settings';
 
 export default class Paddle {
-  constructor(boardHeight, width, height, x, y) {
-    this.boardHeight = boardHeight;
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
-    this.speed = 10;
-    this.score = 0;
-  }
 
-  render(svg){
-     let rect = document.createElementNS(SVG_NS, 'rect');
+    constructor(boardHeight, width, height, x, y, up, down) {
+      this.boardHeight = boardHeight;
+      this.width = width;
+      this.height = height;
+      this.x = x;
+      this.y = y;
+      this.speed = 10; // put this into setting.js
+      this.score = 0;
+
+      document.addEventListener('keydown', event => {
+      // console.log(event.keyCode);
+        switch (event.keyCode) {
+          case up: 
+            this.up();          
+          break;
+          case down:
+            this.down();
+          break;
+        }
+      }); 
+
+     }
+
+    //method
+    up(){ 
+      this.y = Math.max(0, this.y - this.speed);
+    }
+    down(){
+      this.y = Math.min(this.boardHeight-this.height, this.y + this.speed);
+    }
+
+
+    render(svg){
+      let rect = document.createElementNS(SVG_NS, 'rect');
         rect.setAttributeNS(null, 'fill', 'white');
         rect.setAttributeNS(null, 'x', this.x);
         rect.setAttributeNS(null, 'y', this.y);
@@ -21,5 +44,5 @@ export default class Paddle {
 
         svg.appendChild(rect);
 
-  }
+    }
 }

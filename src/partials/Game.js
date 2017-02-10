@@ -1,6 +1,9 @@
-import { SVG_NS } from '../settings';
+import { SVG_NS, KEYS } from '../settings';
+// ex) import HELLO { SVG_NS, KEYS } from '../settings';
+
 import Board from './Board';
-import Paddle from './Paddle'
+import Paddle from './Paddle';
+import Ball from './Ball';
 
 export default class Game {
 
@@ -9,7 +12,7 @@ export default class Game {
 		this.width = width; //view point
 		this.height = height; //viewpoint
 		this.boardGap = 10;
-		this.paddleWidth = 8;
+		this.paddleWidth = 8;// try to pur this into settings
 		this.paddleHeight = 56;
 
 		this.gameElement = document.getElementById(this.element);
@@ -21,15 +24,22 @@ export default class Game {
 			this.paddleWidth, 
 			this.paddleHeight, 
 			this.boardGap, 
-			((this.height-this.paddleHeight)/2)
+			((this.height-this.paddleHeight)/2),
+			KEYS.a,
+			KEYS.z
 			); //paddle: boardHeight, width, height, x, y
 		
 		this.paddle2 = new Paddle(this.height, 
 			this.paddleWidth, 
 			this.paddleHeight, 
-			(this.width - this.boardGap - this.paddleWidth), 
-			((this.height - this.paddleHeight)/2)
+			this.width - this.boardGap - this.paddleWidth, 
+			((this.height - this.paddleHeight)/2),
+			KEYS.up,
+			KEYS.down
 			);
+
+		this.ball = new Ball(8, this.width, this.height);
+
 	}
 
 	render() {
@@ -46,6 +56,6 @@ export default class Game {
 
 		this.paddle1.render(svg);
 		this.paddle2.render(svg);
+		this.ball.render(svg);
 	}
-
 }
