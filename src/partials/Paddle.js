@@ -25,13 +25,22 @@ export default class Paddle {
 
      }
 
-    //method
-    up(){ 
-      this.y = Math.max(0, this.y - this.speed);
-    }
-    down(){
-      this.y = Math.min(this.boardHeight-this.height, this.y + this.speed);
-    }
+  //method
+  up(){ 
+    this.y = Math.max(0, this.y - this.speed);
+  }
+  down(){
+    this.y = Math.min(this.boardHeight-this.height, this.y + this.speed);
+  }
+
+
+  coordinates(x, y, width, height) {
+    let leftX = x;
+    let rightX = x + width;
+    let topY = y;
+    let bottomY = y + height;
+    return [leftX, rightX, topY, bottomY];
+  }
 
 
     render(svg){

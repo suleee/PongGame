@@ -16,6 +16,7 @@ export default class Game {
 		this.paddleHeight = 56;
 
 		this.gameElement = document.getElementById(this.element);
+		this.pause = false;
 
 		this.board = new Board(this.width, this.height);
 		
@@ -39,23 +40,36 @@ export default class Game {
 			);
 
 		this.ball = new Ball(8, this.width, this.height);
-
+		
+		document.addEventListener('keydown', event => {
+				switch (event.keyCode) {
+				case KEYS.spaceBar: 
+					this.pause = !this.pause; 
+				break;       
+					}
+			});
 	}
 
 	render() {
 
-		this.gameElement.innerHTML = '';
+		if(this.pause){
+			return;
+		}
 
-		let svg = document.createElementNS(SVG_NS, 'svg');
-		svg.setAttributeNS(null, 'width', this.width);
-		svg.setAttributeNS(null, 'height', this.height);
-		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
-		this.gameElement.appendChild(svg);
+			this.gameElement.innerHTML = '';
 
-		this.board.render(svg);
+			let svg = document.createElementNS(SVG_NS, 'svg');
+			svg.setAttributeNS(null, 'width', this.width);
+			svg.setAttributeNS(null, 'height', this.height);
+			svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
+			this.gameElement.appendChild(svg);
 
-		this.paddle1.render(svg);
-		this.paddle2.render(svg);
-		this.ball.render(svg);
-	}
+			this.board.render(svg);
+			this.ball.render(svg, this.pladdle1, this.pladdle2);
+
+			this.paddle1.render(svg);
+			this.paddle2.render(svg);
+
+		}
+	
 }

@@ -675,23 +675,74 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Ball = function () {
-	    function Ball(radius, boardWidth, boardHeight) {
+	    function Ball(radius, boardWidth, boardHeight, spaceBar) {
+	        var _this = this;
+
 	        _classCallCheck(this, Ball);
 
 	        this.radius = radius;
 	        this.boardWidth = boardWidth;
 	        this.boardHeight = boardHeight;
 	        this.direction = 1;
+
+	        this.reset();
+
+	        document.addEventListener('keydown', function (event) {
+	            switch (event.keyCode) {
+	                case spaceBar:
+	                    _this.spaceBar();
+	                    break;
+	            }
+	        });
 	    }
+	    //method
+
 
 	    _createClass(Ball, [{
+	        key: 'spaceBar',
+	        value: function spaceBar() {
+	            this.pasue;
+	        }
+	    }, {
+	        key: 'wallCollision',
+	        value: function wallCollision() {
+	            var hitLeft = this.x - this.radius <= 0;
+	            var hitRight = this.x + this.radius >= this.boardWidth;
+	            var hitTop = this.y - this.radius <= 0;
+	            var hitBottom = this.y + this.radius >= this.boardHeight;
+
+	            if (hitLeft || hitRight) {
+	                return this.vx = -this.vx;
+	            } else if (hitTop || hitBottom) {
+	                return this.vy = -this.vy;
+	            }
+	        }
+	    }, {
+	        key: 'reset',
+	        value: function reset() {
+	            this.x = this.boardWidth / 2;
+	            this.y = this.boardHeight / 2;
+
+	            this.vy = 0;
+	            // while (this.vy === 0) {
+	            //     //when this.vy hit 0 do math again
+	            //     Math.floor(Math.random() * 10 - 5); //a number between -5 and 5 //direction of the ball
+	            // }
+	            this.vx = this.direction * (6 - Math.abs(this.vy)); //abs abosoulte
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render(svg) {
+	            this.x += this.vx; //this.x = this.x + this.vx;
+	            this.y += this.vy;
+
+	            this.wallCollision();
+
 	            var ball = document.createElementNS(_settings.SVG_NS, 'circle');
 	            ball.setAttributeNS(null, 'fill', 'white');
-	            ball.setAttributeNS(null, 'cx', this.boardWidth / 2);
-	            ball.setAttributeNS(null, 'cy', this.boardHeight / 2);
-	            ball.setAttributeNS(null, 'radius', this.radius);
+	            ball.setAttributeNS(null, 'cx', this.x); //move this.boardWith/2 to reset //this will always in the center
+	            ball.setAttributeNS(null, 'cy', this.y); //y of the center point
+	            ball.setAttributeNS(null, 'r', this.radius);
 
 	            svg.appendChild(ball);
 	        }
