@@ -28,11 +28,33 @@ export default class Ball {
         }
     }
 
-    paddleCollision(pladdle1, pladdle2) {
+    paddleCollision(paddle1, paddle2) {
         if (this.vx > 0) { 
-            //...
-        } else {
-            //...
+            let paddle = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
+            let[ leftX, rightX, topY, bottomY ] = paddle;
+            if(
+                this.x + this.radius >= leftX
+                //right edge of the ball is >= left edge of the paddle &&
+                && this.x + this.radius <= rightX 
+                //right edge of the ball is <= right edge of the paddle &&
+                && this.y >= topY 
+                && this.y <= bottomY 
+                //ball Y is >= paddle top Y and ball Y <= paddle bottom Y
+            ){
+                this.vx = -this.vx;
+            }
+        } 
+        else {
+            let paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
+            let[ leftX, rightX, topY, bottomY ] = paddle;
+            if(
+               this.x - this.radius >= leftX
+                && this.x - this.radius <= rightX 
+                && this.y >= topY 
+                && this.y <= bottomY 
+            ){
+                this.vx = -this.vx;
+            }
         }
     }
     reset() {
@@ -47,11 +69,12 @@ export default class Ball {
         this.vx = this.direction * (6 - Math.abs(this.vy)); //abs abosoulte
     }
 
-    render(svg, pladdle1, pladdle2) {
+    render(svg, paddle1, paddle2) {
         this.x += this.vx; //this.x = this.x + this.vx;
         this.y += this.vy;
 
         this.wallCollision();
+        this.paddleCollision(paddle1, paddle2);
 
         let ball = document.createElementNS(SVG_NS, 'circle');
         ball.setAttributeNS(null, 'fill', 'white');

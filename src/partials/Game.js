@@ -65,7 +65,7 @@ export default class Game {
 			this.gameElement.appendChild(svg);
 
 			this.board.render(svg);
-			this.ball.render(svg, this.pladdle1, this.pladdle2);
+			this.ball.render(svg, this.paddle1, this.paddle2);
 
 			this.paddle1.render(svg);
 			this.paddle2.render(svg);
