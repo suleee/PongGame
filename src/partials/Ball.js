@@ -60,6 +60,8 @@ export default class Ball {
                 this.y <= bottomY
             ) {
                 this.vx = -this.vx;
+                this.ping.play();
+                
             }
         }
     }
