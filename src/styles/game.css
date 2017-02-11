@@ -84,3 +84,35 @@ h1 {
   margin-bottom: 1rem; 
   text-align: center;
 }
+p{
+  font-size: 14px;
+}
+
+.player-text{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.playertext1{
+  flex-basis: 50%;
+}
+.playertext2{
+  flex-basis: 50%;
+}
+
+.button{
+  width: 150px;
+  height: 45px;
+  border-radius: 20px;
+  background: red;
+  color: white;
+  text-align: center;
+  margin: auto;
+  border: 5px solid black;
+}
+
+.button p{
+
+  padding-top: 10px;
+}

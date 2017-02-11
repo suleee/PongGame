@@ -10,6 +10,8 @@ export default class Ball {
         this.boardHeight = boardHeight;
         this.direction = 1;
 
+        this.ping = new Audio('public/sounds/pong-01.wav');
+
         this.reset();
 
     }
@@ -44,6 +46,7 @@ export default class Ball {
                 //ball Y is >= paddle top Y and ball Y <= paddle bottom Y
             ) {
                 this.vx = -this.vx;
+                this.ping.play();
             }
         } else {
             let paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
@@ -86,11 +89,23 @@ export default class Ball {
         this.wallCollision();
         this.paddleCollision(paddle1, paddle2);
 
+        // let eyes = document.createElementNS(SVG_NS, 'circle');
+        // eyes.setAttributeNS(null, 'fill', 'orange');
+        // eyes.setAttributeNS(null, 'cx', this.x); //move this.boardWith/2 to reset //this will always in the center
+        // eyes.setAttributeNS(null, 'cy', this.y); //y of the center point
+        // eyes.setAttributeNS(null, 'r', this.radius);
+        // eyes.setAttributeNS(null, 'stroke', 'black');
+        // eyes.setAttributeNS(null, 'stroke-width', '2');
+        // svg.appendChild(eyes);
+
+
         let ball = document.createElementNS(SVG_NS, 'circle');
-        ball.setAttributeNS(null, 'fill', 'white');
+        ball.setAttributeNS(null, 'fill', 'orange');
         ball.setAttributeNS(null, 'cx', this.x); //move this.boardWith/2 to reset //this will always in the center
         ball.setAttributeNS(null, 'cy', this.y); //y of the center point
         ball.setAttributeNS(null, 'r', this.radius);
+        ball.setAttributeNS(null, 'stroke', 'black');
+        ball.setAttributeNS(null, 'stroke-width', '1');
         svg.appendChild(ball);
 
         const rightGoal = this.x + this.radius >= this.boardWidth;
@@ -98,7 +113,7 @@ export default class Ball {
 
         if (rightGoal) {
             this.goal(paddle1);
-            this.durction =1;
+            this.durction = 1;
         } else if (leftGoal) {
             this.goal(paddle2);
             this.durction = -1;

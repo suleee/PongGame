@@ -11,10 +11,11 @@ export default class Board {
   render(svg) {
 
     let rect = document.createElementNS(SVG_NS, 'rect');
-    rect.setAttributeNS(null, 'fill', '#353535');
+    rect.setAttributeNS(null, 'fill', '#2b9ea0');
     rect.setAttributeNS(null, 'width', this.width);
     rect.setAttributeNS(null, 'height', this.height);
-
+    rect.setAttributeNS(null, 'rx', '10');
+    rect.setAttributeNS(null, 'ry', '10');
 
     let line = document.createElementNS(SVG_NS, 'line');
     line.setAttributeNS(null, 'x1', (this.width / 2));
@@ -24,6 +25,7 @@ export default class Board {
     line.setAttributeNS(null, 'stroke-dasharray', '20, 15');
     line.setAttributeNS(null, 'stroke', 'white');
     line.setAttributeNS(null, 'stroke-width', '4px');
+
 
     svg.appendChild(rect);
     svg.appendChild(line);

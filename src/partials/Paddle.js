@@ -10,7 +10,7 @@ export default class Paddle {
     this.height = height;
     this.x = x;
     this.y = y;
-    this.speed = 10; // put this into setting.js
+    this.speed = 50; // put this into setting.js
     this.score = 0;
 
     document.addEventListener('keydown', event => {
@@ -46,14 +46,17 @@ export default class Paddle {
 
 
   render(svg) {
+
     let rect = document.createElementNS(SVG_NS, 'rect');
     rect.setAttributeNS(null, 'fill', 'white');
     rect.setAttributeNS(null, 'x', this.x);
     rect.setAttributeNS(null, 'y', this.y);
     rect.setAttributeNS(null, 'width', this.width);
     rect.setAttributeNS(null, 'height', this.height);
-//     rect.setAttributeNS(null, 'rx', '20');
-// rx="20" ry="20"
+    rect.setAttributeNS(null, 'stroke', 'black');
+    rect.setAttributeNS(null, 'stroke-width', '1');
+    rect.setAttributeNS(null, 'rx', '5');
+    rect.setAttributeNS(null, 'ry', '5');
     svg.appendChild(rect);
 
   }

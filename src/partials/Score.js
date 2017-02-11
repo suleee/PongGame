@@ -8,10 +8,9 @@ export default class Score {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.score = 0;
     }
 
-    render(svg) {
+    render(svg, scorecount) {
 
         let score = document.createElementNS(SVG_NS, 'text');
         score.setAttributeNS(null, 'x', this.x); //move this.boardWith/2 to reset //this will always in the center
@@ -19,8 +18,7 @@ export default class Score {
         score.setAttributeNS(null, 'font-family', 'Silkscreen Web');
         score.setAttributeNS(null, 'font-size', this.size);
         score.setAttributeNS(null, 'fill', 'white');
-        score.innerHTML = this.score;
-        
+        score.textContent = scorecount; //scorecount becasue I already named the let score 
         svg.appendChild(score);
     }
 }

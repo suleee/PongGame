@@ -10,3 +10,4 @@ const game = new Game('game', 512, 256);
     requestAnimationFrame(gameLoop); //re-drawing this game 
 
 })(); //immiately call, this is an argurment of gameLoop
+
