@@ -484,27 +484,20 @@
 
 			this.gameElement = document.getElementById(this.element);
 			this.pause = false;
-			this.s = true;
 
 			this.board = new _Board2.default(this.width, this.height);
 
 			this.paddle1 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.boardGap, (this.height - this.paddleHeight) / 2, _settings.KEYS.a, _settings.KEYS.z, 'white', '7', '7'); //paddle: boardHeight, width, height, x, y
-			this.paddle1two = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight - 48, this.boardGap, (this.height - this.paddleHeight) / 2 + 18, _settings.KEYS.up, _settings.KEYS.down, '#11414b', '1', '1');
-			this.paddle1three = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight - 48, this.boardGap, (this.height - this.paddleHeight) / 2 + 50, _settings.KEYS.up, _settings.KEYS.down, '#11414b', '1', '1');
+
 			this.paddle2 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down, 'white', '7', '7');
-			this.paddle2two = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight - 48, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2 + 18, _settings.KEYS.up, _settings.KEYS.down, '#11414b', '1', '1');
-			this.paddle2three = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight - 48, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2 + 50, _settings.KEYS.up, _settings.KEYS.down, '#11414b', '1', '1');
 
 			this.ball = new _Ball2.default(10, this.width, this.height, 'orange');
-			this.ballEye = new _Ball2.default(4, this.width, this.height, 'black', _settings.KEYS.t);
+			// this.ballEye = new Ball(4, this.width, this.height, 'black', KEYS.t);
 
 			document.addEventListener('keydown', function (event) {
 				switch (event.keyCode) {
 					case _settings.KEYS.spaceBar:
 						_this.pause = !_this.pause;
-						break;
-					case _settings.KEYS.s:
-						_this.s = !_this.s;
 						break;
 				}
 			});
@@ -512,14 +505,6 @@
 			this.paddle1score = new _Score2.default(230, 25, 25);
 			this.paddle2score = new _Score2.default(348, 25, 25);
 		}
-
-		//method
-		// paddleScore(paddle1score, paddle2score) {
-		//         if (this.paddle1score < 10) {
-		//             stop
-		// 		}
-		// 		else{}
-		// }
 
 		_createClass(Game, [{
 			key: 'render',
@@ -539,15 +524,10 @@
 
 				this.board.render(svg);
 
-				this.ballEye.render(svg, this.paddle1, this.paddle2);
 				this.ball.render(svg, this.paddle1, this.paddle2);
 
 				this.paddle1.render(svg);
 				this.paddle2.render(svg);
-				this.paddle1two.render(svg);
-				this.paddle1three.render(svg);
-				this.paddle2two.render(svg);
-				this.paddle2three.render(svg);
 
 				// this.score1.score = this.pladdle1.score;//oldways
 				this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
@@ -700,12 +680,12 @@
 	  _createClass(Paddle, [{
 	    key: 'up',
 	    value: function up() {
-	      this.y = Math.max(0, this.y - this.speed);
+	      this.y = Math.max(2, this.y - this.speed);
 	    }
 	  }, {
 	    key: 'down',
 	    value: function down() {
-	      this.y = Math.min(this.boardHeight - this.height, this.y + this.speed);
+	      this.y = Math.min(this.boardHeight - 2 - this.height, this.y + this.speed);
 	    }
 	  }, {
 	    key: 'coordinates',
@@ -758,8 +738,6 @@
 
 	var Ball = function () {
 	    function Ball(radius, boardWidth, boardHeight, colorfill) {
-	        var _this = this;
-
 	        _classCallCheck(this, Ball);
 
 	        this.radius = radius;
@@ -771,14 +749,6 @@
 	        this.ping = new Audio('public/sounds/pong-01.wav');
 
 	        this.reset();
-
-	        document.addEventListener('keydown', function (event) {
-	            switch (event.keyCode) {
-	                case _settings.KEYS.t:
-	                    _this.balls = !_this.balls;
-	                // console.log(this.ball);
-	            }
-	        });
 	    }
 
 	    _createClass(Ball, [{
@@ -828,6 +798,7 @@
 
 	                if (this.x - this.radius >= _leftX && this.x - this.radius <= _rightX && this.y >= _topY && this.y <= _bottomY) {
 	                    this.vx = -this.vx;
+	                    this.ping.play();
 	                }
 	            }
 	        }
