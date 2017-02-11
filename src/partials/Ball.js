@@ -12,9 +12,9 @@ export default class Ball {
         this.direction = 1;
 
         this.ping = new Audio('public/sounds/pong-01.wav');
-
-        this.reset();
         
+        this.reset();		
+
 
     }
 
@@ -84,13 +84,16 @@ export default class Ball {
         this.vx = this.direction * (6 - Math.abs(this.vy)); //abs abosoulte
     }
 
+
+
     render(svg, paddle1, paddle2) {
+        
+
         this.x += this.vx; //this.x = this.x + this.vx;
         this.y += this.vy;
 
         this.wallCollision();
         this.paddleCollision(paddle1, paddle2);
-
 
         let ball = document.createElementNS(SVG_NS, 'circle');
         ball.setAttributeNS(null, 'fill', this.colorfill);

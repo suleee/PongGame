@@ -26,7 +26,6 @@ export default class Board {
     line.setAttributeNS(null, 'stroke', 'white');
     line.setAttributeNS(null, 'stroke-width', '4px');
 
-
     svg.appendChild(rect);
     svg.appendChild(line);
 

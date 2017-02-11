@@ -9,4 +9,16 @@ export const KEYS = {
   down: 40, // player 2 down key
   left: 37,//right fire ball
   spaceBar: 32, // we'll use this later...
+  t: 84 //mutiple balls
+}
+
+export const GAME = {
+	boardGap: 10,
+	paddleWidth: 8,
+	paddleHeight: 56
+}
+
+export const PADDLE = {
+    speed: 50,
+    score: 0
 }

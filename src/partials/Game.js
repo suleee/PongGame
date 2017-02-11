@@ -1,6 +1,7 @@
 import {
 	SVG_NS,
-	KEYS
+	KEYS,
+	GAME
 } from '../settings';
 // ex) import HELLO { SVG_NS, KEYS } from '../settings';
 
@@ -15,51 +16,53 @@ export default class Game {
 		this.element = element;
 		this.width = width; //view point
 		this.height = height; //viewpoint
-		this.boardGap = 10;
-		this.paddleWidth = 8; // try to pur this into settings
-		this.paddleHeight = 56;
+		this.boardGap = GAME.boardGap;
+		this.paddleWidth = GAME.paddleWidth;
+		this.paddleHeight = GAME.paddleHeight;
 
 		this.gameElement = document.getElementById(this.element);
-		this.pause = true;
-		this.s = true;
+		this.pause = false;
 
 		this.board = new Board(this.width, this.height);
 
 		this.paddle1 = new Paddle(
 			this.height,
-			this.paddleWidth + 2,
-			this.paddleHeight,
+			this.paddleWidth + 4,
+			this.paddleHeight + 20,
 			this.boardGap,
 			((this.height - this.paddleHeight) / 2),
 			KEYS.a,
-			KEYS.z
+			KEYS.z,
+			'white',
+			'7',
+			'7',
 		); //paddle: boardHeight, width, height, x, y
-
+	
 		this.paddle2 = new Paddle(this.height,
-			this.paddleWidth + 2,
-			this.paddleHeight,
+			this.paddleWidth + 4,
+			this.paddleHeight + 20,
 			this.width - this.boardGap - this.paddleWidth,
 			((this.height - this.paddleHeight) / 2),
 			KEYS.up,
-			KEYS.down
+			KEYS.down,
+			'white',
+			'7',
+			'7',
 		);
 
 		this.ball = new Ball(10, this.width, this.height, 'orange');
-		this.fireball = new Ball(4, this.width, this.height, 'pink');
+		// this.ballEye = new Ball(4, this.width, this.height, 'black', KEYS.t);
 
 		document.addEventListener('keydown', event => {
 			switch (event.keyCode) {
 				case KEYS.spaceBar:
 					this.pause = !this.pause;
 					break;
-				case KEYS.s:
-					this.s = !this.s;
-					break;
 			}
 		});
 
-		this.paddle1score = new Score(210, 35, 30);
-		this.paddle2score = new Score(290, 35, 30);
+		this.paddle1score = new Score(230, 25, 25);
+		this.paddle2score = new Score(348, 25, 25);
 	}
 
 
@@ -79,15 +82,15 @@ export default class Game {
 
 		this.board.render(svg);
 
-		this.fireball.render(svg, this.paddle1, this.paddle2);
 		this.ball.render(svg, this.paddle1, this.paddle2);
 
 		this.paddle1.render(svg);
 		this.paddle2.render(svg);
 
+
 		// this.score1.score = this.pladdle1.score;//oldways
-		this.paddle1score.render(svg, this.paddle1.score);
-		this.paddle2score.render(svg, this.paddle2.score);
+		this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
+		this.paddle2score.render(svg, 'p2: ' + this.paddle2.score);
 
 	}
 

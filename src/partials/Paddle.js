@@ -1,17 +1,21 @@
 import {
-  SVG_NS
+  SVG_NS,
+  PADDLE
 } from '../settings';
 
 export default class Paddle {
 
-  constructor(boardHeight, width, height, x, y, up, down) {
+  constructor(boardHeight, width, height, x, y, up, down, color, rx, ry) {
     this.boardHeight = boardHeight;
     this.width = width;
     this.height = height;
     this.x = x;
     this.y = y;
-    this.speed = 50; // put this into setting.js
-    this.score = 0;
+    this.speed = PADDLE.speed;
+    this.score = PADDLE.score;
+    this.color = color;
+    this.rx = rx;
+    this.ry = ry;
 
     document.addEventListener('keydown', event => {
       // console.log(event.keyCode);
@@ -29,10 +33,10 @@ export default class Paddle {
 
   //method
   up() {
-    this.y = Math.max(0, this.y - this.speed);
+    this.y = Math.max(2, this.y - this.speed);
   }
   down() {
-    this.y = Math.min(this.boardHeight - this.height, this.y + this.speed);
+    this.y = Math.min((this.boardHeight-2) - this.height, this.y + this.speed);
   }
 
 
@@ -46,18 +50,17 @@ export default class Paddle {
 
 
   render(svg) {
-
     let rect = document.createElementNS(SVG_NS, 'rect');
-    rect.setAttributeNS(null, 'fill', 'white');
-    rect.setAttributeNS(null, 'x', this.x);
-    rect.setAttributeNS(null, 'y', this.y);
-    rect.setAttributeNS(null, 'width', this.width);
-    rect.setAttributeNS(null, 'height', this.height);
-    rect.setAttributeNS(null, 'stroke', 'black');
-    rect.setAttributeNS(null, 'stroke-width', '1');
-    rect.setAttributeNS(null, 'rx', '5');
-    rect.setAttributeNS(null, 'ry', '5');
-    svg.appendChild(rect);
+        rect.setAttributeNS(null, 'fill', this.color);
+        rect.setAttributeNS(null, 'x', this.x);
+        rect.setAttributeNS(null, 'y', this.y);
+        rect.setAttributeNS(null, 'width', this.width);
+        rect.setAttributeNS(null, 'height', this.height);
+        rect.setAttributeNS(null, 'stroke', 'black');
+        rect.setAttributeNS(null, 'stroke-width', '1.5');
+        rect.setAttributeNS(null, 'rx', this.rx);
+        rect.setAttributeNS(null, 'ry', this.ry);
+        svg.appendChild(rect);
 
   }
 }
