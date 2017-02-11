@@ -21,6 +21,7 @@ export default class Game {
 
 		this.gameElement = document.getElementById(this.element);
 		this.pause = true;
+		this.s = true;
 
 		this.board = new Board(this.width, this.height);
 
@@ -42,13 +43,17 @@ export default class Game {
 			KEYS.up,
 			KEYS.down
 		);
-		// this.eyes1 = new Eyes(2, this.width, this.height);
-		this.ball = new Ball(10, this.width, this.height);
+
+		this.ball = new Ball(10, this.width, this.height, 'orange');
+		this.fireball = new Ball(4, this.width, this.height, 'pink');
 
 		document.addEventListener('keydown', event => {
 			switch (event.keyCode) {
 				case KEYS.spaceBar:
 					this.pause = !this.pause;
+					break;
+				case KEYS.s:
+					this.s = !this.s;
 					break;
 			}
 		});
@@ -56,6 +61,7 @@ export default class Game {
 		this.paddle1score = new Score(210, 35, 30);
 		this.paddle2score = new Score(290, 35, 30);
 	}
+
 
 	render() {
 
@@ -72,6 +78,8 @@ export default class Game {
 		this.gameElement.appendChild(svg);
 
 		this.board.render(svg);
+
+		this.fireball.render(svg, this.paddle1, this.paddle2);
 		this.ball.render(svg, this.paddle1, this.paddle2);
 
 		this.paddle1.render(svg);

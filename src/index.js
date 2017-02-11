@@ -5,7 +5,13 @@ import Game from './partials/Game';
 // create a game instance
 const game = new Game('game', 512, 256);
 
+
 (function gameLoop() {
+    // var button = false;
+    // (fucntion action(){
+    //     hidden = !hidden;
+
+    // });
     game.render(); //Game.js's at the last render part
     requestAnimationFrame(gameLoop); //re-drawing this game 
 

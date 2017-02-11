@@ -4,15 +4,17 @@ import {
 
 export default class Ball {
 
-    constructor(radius, boardWidth, boardHeight) {
+    constructor(radius, boardWidth, boardHeight, colorfill) {
         this.radius = radius;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
+        this.colorfill = colorfill;
         this.direction = 1;
 
         this.ping = new Audio('public/sounds/pong-01.wav');
 
         this.reset();
+        
 
     }
 
@@ -89,23 +91,14 @@ export default class Ball {
         this.wallCollision();
         this.paddleCollision(paddle1, paddle2);
 
-        // let eyes = document.createElementNS(SVG_NS, 'circle');
-        // eyes.setAttributeNS(null, 'fill', 'orange');
-        // eyes.setAttributeNS(null, 'cx', this.x); //move this.boardWith/2 to reset //this will always in the center
-        // eyes.setAttributeNS(null, 'cy', this.y); //y of the center point
-        // eyes.setAttributeNS(null, 'r', this.radius);
-        // eyes.setAttributeNS(null, 'stroke', 'black');
-        // eyes.setAttributeNS(null, 'stroke-width', '2');
-        // svg.appendChild(eyes);
-
 
         let ball = document.createElementNS(SVG_NS, 'circle');
-        ball.setAttributeNS(null, 'fill', 'orange');
+        ball.setAttributeNS(null, 'fill', this.colorfill);
         ball.setAttributeNS(null, 'cx', this.x); //move this.boardWith/2 to reset //this will always in the center
         ball.setAttributeNS(null, 'cy', this.y); //y of the center point
         ball.setAttributeNS(null, 'r', this.radius);
         ball.setAttributeNS(null, 'stroke', 'black');
-        ball.setAttributeNS(null, 'stroke-width', '1');
+        ball.setAttributeNS(null, 'stroke-width', '1.5');
         svg.appendChild(ball);
 
         const rightGoal = this.x + this.radius >= this.boardWidth;
