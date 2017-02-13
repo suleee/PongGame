@@ -183,7 +183,7 @@ h3 {
 }
 
 p {
-  font-size: 14px;
+  font-size: 12px;
   color: #103438;
   margin-top: 3px;
 }
@@ -193,9 +193,11 @@ img {
   margin-right: 8px;
 }
 span{
+font-size: 14px;
+}
+.ten{
   font-size: 25px;
 }
-
 .h-text{
   text-align: center;
   padding-bottom: 7px;

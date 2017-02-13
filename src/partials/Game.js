@@ -10,7 +10,7 @@ import {
 
 import Board from './Board';
 import Paddle from './Paddle';
-// import MultipleBalls from './MultipleBalls';
+import MultipleBalls from './MultipleBalls';
 import Ball from './Ball';
 import Score from './Score';
 import FireBalls from './FireBalls';
@@ -64,9 +64,9 @@ export default class Game {
 		this.fireballs3 = new FireBalls(5, this.width, this.height, 'red', FIRE.s);
 		this.fireballs4 = new FireBalls(5, this.width, this.height, 'white', FIRE.s, );
 
-		this.multipleballs1 = new Ball(6, this.width, this.height, 'yellow', MULTIPLE.t);
-		this.multipleballs2 = new Ball(8, this.width, this.height, 'green', MULTIPLE.t);
-		this.multipleballs3 = new Ball(4, this.width, this.height, 'pink', MULTIPLE.t);
+		this.multipleballs1 = new MultipleBalls(6, this.width, this.height, 'yellow', MULTIPLE.t);
+		this.multipleballs2 = new MultipleBalls(8, this.width, this.height, 'green', MULTIPLE.t);
+		this.multipleballs3 = new MultipleBalls(4, this.width, this.height, 'pink', MULTIPLE.t);
 
 		document.addEventListener('keydown', event => {
 			switch (event.keyCode) {
@@ -125,10 +125,10 @@ export default class Game {
 			this.multipleballs3.render(svg, this.paddle1, this.paddle2);
 		}
 
-		if (this.paddle1.score >= 10) {
+		if (this.paddle1.score >= 15) {
 			this.winner = 'Player 1';
 			this.pause = true;
-		} else if (this.paddle2.score >= 10) {
+		} else if (this.paddle2.score >= 15) {
 			this.winner = 'Player 2';
 			this.pause = true;
 
