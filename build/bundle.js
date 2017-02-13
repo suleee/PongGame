@@ -492,6 +492,8 @@
 			this.paddleHeight = _settings.GAME.paddleHeight;
 			this.winner = '';
 
+			this.ping2 = new Audio('public/sounds/pong-04.wav');
+
 			this.gameElement = document.getElementById(this.element);
 			this.pause = false;
 
@@ -565,9 +567,11 @@
 				if (this.paddle1.score >= 11) {
 					this.winner = 'Player 1';
 					this.pause = true;
+					this.ping2.play();
 				} else if (this.paddle2.score >= 11) {
 					this.winner = 'Player 2';
 					this.pause = true;
+					this.ping2.play();
 				}
 			}
 		}]);
@@ -931,7 +935,7 @@
 
 	        this.direction = 1;
 	        this.ping1 = new Audio('public/sounds/pong-02.wav');
-	        this.ping2 = new Audio('public/sounds/pong-04.wav');
+	        this.ping3 = new Audio('public/sounds/pong-01.wav');
 
 	        this.reset();
 
@@ -963,8 +967,10 @@
 	            var hitBottom = this.y + this.radius >= this.boardHeight;
 
 	            if (hitLeft || hitRight) {
+	                this.ping3.play();
 	                return this.vx = -this.vx;
 	            } else if (hitTop || hitBottom) {
+	                this.ping3.play();
 	                return this.vy = -this.vy;
 	            }
 	        }
@@ -1010,7 +1016,7 @@
 	        value: function goal(paddle) {
 	            //incresement the score
 	            paddle.score++;
-	            this.ping2.play();
+
 	            if (paddle.score >= 11) {
 	                this.reset();
 	            }

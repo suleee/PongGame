@@ -32,7 +32,7 @@ A basic pong game using SVGs.
 * space bar: pause the game
 * refresh: re-start the game 
 
-##How to Player
+##How to Play
 
 
 ## [Stretch Goal Note]
