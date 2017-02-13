@@ -25,6 +25,7 @@ export default class Game {
 		this.boardGap = GAME.boardGap;
 		this.paddleWidth = GAME.paddleWidth;
 		this.paddleHeight = GAME.paddleHeight;
+		this.winner = '';
 
 		this.gameElement = document.getElementById(this.element);
 		this.pause = false;
@@ -61,7 +62,7 @@ export default class Game {
 		this.fireballs1 = new FireBalls(5, this.width, this.height, 'red', FIRE.s);
 		this.fireballs2 = new FireBalls(5, this.width, this.height, 'white', FIRE.s);
 		this.fireballs3 = new FireBalls(5, this.width, this.height, 'red', FIRE.s);
-		this.fireballs4 = new FireBalls(5, this.width, this.height, 'white', FIRE.s,);
+		this.fireballs4 = new FireBalls(5, this.width, this.height, 'white', FIRE.s, );
 
 		this.multipleballs1 = new Ball(6, this.width, this.height, 'yellow', MULTIPLE.t);
 		this.multipleballs2 = new Ball(8, this.width, this.height, 'green', MULTIPLE.t);
@@ -79,6 +80,11 @@ export default class Game {
 		this.paddle2score = new Score(348, 25, 25);
 	}
 
+	// ballcontrols(balls) {
+	// 	let balls = this.mutipleballs1, this.mutipleballs2, this.mutipleballs3;
+
+
+	// }
 
 	render() {
 		if (this.pause) {
@@ -102,9 +108,6 @@ export default class Game {
 		this.fireballs3.render(svg);
 		this.fireballs4.render(svg);
 
-		this.multipleballs1.render(svg, this.paddle1, this.paddle2);
-		this.multipleballs2.render(svg, this.paddle1, this.paddle2);
-		this.multipleballs3.render(svg, this.paddle1, this.paddle2);
 
 		this.ball.render(svg, this.paddle1, this.paddle2);
 
@@ -115,20 +118,22 @@ export default class Game {
 		// this.score1.score = this.pladdle1.score;//oldways
 		this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
 		this.paddle2score.render(svg, 'p2: ' + this.paddle2.score);
-		// let winner = 'Winner: ';
-		// // let playAgain = 'Refresh to play again';
-		// let score1 = parseInt(this.player1.score);
-		// let score2 = parseInt(this.player2.score);
+
+		this.multipleballs1.render(svg, this.paddle1, this.paddle2);
+		this.multipleballs2.render(svg, this.paddle1, this.paddle2);
+		this.multipleballs3.render(svg, this.paddle1, this.paddle2);
+
+		if (this.paddle1.score >= 2) {
+			this.winner = 'Player 1';
+			this.pause = true;
+	
+
+		} else if (this.paddle2.score >= 2) {
+			this.winner = 'Player 2';
 
 
-		// if (score1 === 2 || score2 === 2) {
-		// 	// this.ping.play();
-		// 	this.score3.render(svg);
-		// 	this.reset();
-		// 	// this.score4.render(svg, playAgain);
-		// 	this.pause = true;
+		}
 
-		//}
 
 	}
 
