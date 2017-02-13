@@ -501,7 +501,7 @@
 
 			this.paddle2 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down, 'orange', '7', '7');
 
-			this.ball = new _Ball2.default(10, this.width, this.height, '#19535F', _settings.START.enter);
+			this.ball = new _Ball2.default(10, this.width, this.height, 'white', _settings.START.enter);
 
 			this.fireballs1 = new _FireBalls2.default(5, this.width, this.height, 'red', _settings.FIRE.s);
 			this.fireballs2 = new _FireBalls2.default(5, this.width, this.height, 'white', _settings.FIRE.s);
@@ -1011,7 +1011,7 @@
 	            //incresement the score
 	            paddle.score++;
 	            this.ping2.play();
-	            if (paddle.score === 10) {
+	            if (paddle.score >= 11) {
 	                this.reset();
 	            }
 	        }

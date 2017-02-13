@@ -12,7 +12,7 @@ export default class Ball {
 
         this.direction = 1;
         this.ping1 = new Audio('public/sounds/pong-02.wav');
-        this.ping2 = new Audio('public/sounds/pong-04.wav');
+        this.ping3 = new Audio('public/sounds/pong-01.wav');
 
         this.reset();
 
@@ -40,8 +40,10 @@ export default class Ball {
         const hitBottom = this.y + this.radius >= this.boardHeight;
 
         if (hitLeft || hitRight) {
+            this.ping3.play();
             return this.vx = -this.vx;
         } else if (hitTop || hitBottom) {
+            this.ping3.play();
             return this.vy = -this.vy;
         }
     }
@@ -82,7 +84,7 @@ export default class Ball {
     goal(paddle) {
         //incresement the score
         paddle.score++;
-        this.ping2.play();
+
         if (paddle.score >= 11) {
             this.reset();
         }

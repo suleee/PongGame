@@ -26,6 +26,8 @@ export default class Game {
 		this.paddleHeight = GAME.paddleHeight;
 		this.winner = '';
 
+		this.ping2 = new Audio('public/sounds/pong-04.wav');
+
 		this.gameElement = document.getElementById(this.element);
 		this.pause = false;
 
@@ -118,9 +120,11 @@ export default class Game {
 		if (this.paddle1.score >= 11) {
 			this.winner = 'Player 1';
 			this.pause = true;
+			this.ping2.play();
 		} else if (this.paddle2.score >= 11) {
 			this.winner = 'Player 2';
 			this.pause = true;
+			this.ping2.play();
 		}
 	}
 
