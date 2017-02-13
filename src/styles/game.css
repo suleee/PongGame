@@ -179,17 +179,24 @@ h1 {
 h3 {
   color: #0b2426;
   font-size: 20px;
-  margin:13px 0 10px 0;
+  margin: 13px 0 10px 0;
 }
 
 p {
   font-size: 14px;
   color: #103438;
+  margin-top: 3px;
 }
-img{
-  width: 40px;
 
+img {
+  width: 40px;
   margin-right: 8px;
+}
+
+.h-text{
+  text-align: center;
+  padding-bottom: 5px;
+  /*text-transform: lowercase;*/
 }
 
 .player-text {
@@ -197,20 +204,26 @@ img{
   flex-wrap: wrap;
   margin-top: 20px;
 }
-.image1{
-  flex-basis: 5%;
+
+.box1 {
+  flex-basis: 25%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.player-text1 {
-  flex-basis: 14%;
-}
-
-.player-text2 {
-  flex-basis: 52%;
+.box2 {
+  flex-basis: 50%;
   text-align: center;
 }
 
-.button {
+.box3 {
+  flex-basis: 25%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/*.button {
   width: 180px;
   height: 45px;
   border-radius: 20px;
@@ -223,4 +236,4 @@ img{
 
 .button p {
   padding-top: 10px;
-}
+}*/

@@ -7,6 +7,8 @@ const game = new Game('game', 650, 300);
 
 
 (function gameLoop() {
+
+
     game.render(); //Game.js's at the last render part
     requestAnimationFrame(gameLoop); //re-drawing this game 
 

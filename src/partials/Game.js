@@ -1,14 +1,20 @@
 import {
 	SVG_NS,
 	KEYS,
-	GAME
+	GAME,
+	START,
+	FIRE,
+	MULTIPLE
 } from '../settings';
 // ex) import HELLO { SVG_NS, KEYS } from '../settings';
 
 import Board from './Board';
 import Paddle from './Paddle';
+// import MultipleBalls from './MultipleBalls';
 import Ball from './Ball';
 import Score from './Score';
+import FireBalls from './FireBalls';
+
 
 export default class Game {
 
@@ -37,7 +43,7 @@ export default class Game {
 			'7',
 			'7',
 		); //paddle: boardHeight, width, height, x, y
-	
+
 		this.paddle2 = new Paddle(this.height,
 			this.paddleWidth + 4,
 			this.paddleHeight + 20,
@@ -50,8 +56,16 @@ export default class Game {
 			'7',
 		);
 
-		this.ball = new Ball(10, this.width, this.height, 'orange');
-		// this.ballEye = new Ball(4, this.width, this.height, 'black', KEYS.t);
+		this.ball = new Ball(10, this.width, this.height, 'orange', START.enter);
+
+		this.fireballs1 = new FireBalls(5, this.width, this.height, 'red', FIRE.s);
+		this.fireballs2 = new FireBalls(5, this.width, this.height, 'white', FIRE.s);
+		this.fireballs3 = new FireBalls(5, this.width, this.height, 'red', FIRE.s);
+		this.fireballs4 = new FireBalls(5, this.width, this.height, 'white', FIRE.s,);
+
+		this.multipleballs1 = new Ball(6, this.width, this.height, 'yellow', MULTIPLE.t);
+		this.multipleballs2 = new Ball(8, this.width, this.height, 'green', MULTIPLE.t);
+		this.multipleballs3 = new Ball(4, this.width, this.height, 'pink', MULTIPLE.t);
 
 		document.addEventListener('keydown', event => {
 			switch (event.keyCode) {
@@ -67,7 +81,6 @@ export default class Game {
 
 
 	render() {
-
 		if (this.pause) {
 			return;
 		}
@@ -75,12 +88,23 @@ export default class Game {
 		this.gameElement.innerHTML = '';
 
 		let svg = document.createElementNS(SVG_NS, 'svg');
+		// let text = 'Press teh enter';
 		svg.setAttributeNS(null, 'width', this.width);
 		svg.setAttributeNS(null, 'height', this.height);
 		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
 		this.gameElement.appendChild(svg);
 
+
 		this.board.render(svg);
+
+		this.fireballs1.render(svg);
+		this.fireballs2.render(svg);
+		this.fireballs3.render(svg);
+		this.fireballs4.render(svg);
+
+		this.multipleballs1.render(svg, this.paddle1, this.paddle2);
+		this.multipleballs2.render(svg, this.paddle1, this.paddle2);
+		this.multipleballs3.render(svg, this.paddle1, this.paddle2);
 
 		this.ball.render(svg, this.paddle1, this.paddle2);
 
@@ -91,6 +115,20 @@ export default class Game {
 		// this.score1.score = this.pladdle1.score;//oldways
 		this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
 		this.paddle2score.render(svg, 'p2: ' + this.paddle2.score);
+		// let winner = 'Winner: ';
+		// // let playAgain = 'Refresh to play again';
+		// let score1 = parseInt(this.player1.score);
+		// let score2 = parseInt(this.player2.score);
+
+
+		// if (score1 === 2 || score2 === 2) {
+		// 	// this.ping.play();
+		// 	this.score3.render(svg);
+		// 	this.reset();
+		// 	// this.score4.render(svg, playAgain);
+		// 	this.pause = true;
+
+		//}
 
 	}
 
