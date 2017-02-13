@@ -192,17 +192,20 @@ img {
   width: 40px;
   margin-right: 8px;
 }
+span{
+  font-size: 25px;
+}
 
 .h-text{
   text-align: center;
-  padding-bottom: 5px;
+  padding-bottom: 7px;
   /*text-transform: lowercase;*/
 }
 
 .player-text {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .box1 {

@@ -4,7 +4,7 @@ import {
 
 export default class Ball {
 
-    constructor(radius, boardWidth, boardHeight, colorfill) {
+    constructor(radius, boardWidth, boardHeight, colorfill, controls) {
         this.radius = radius;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
@@ -16,21 +16,21 @@ export default class Ball {
 
         this.reset();
 
-        // document.addEventListener('keydown', event => {
-        //     if (this.vx === 0 && this.vy === 0 && event.keyCode === controls) {
-        //         const generateSpeed = () => {
-        //             while (this.vy === 0) {
-        //                 this.vy = Math.floor(Math.random() * 10 - 5); //a number between -5 and 5 //direction of the ball
-        //             }
-        //             this.vx = this.direction * (6 - Math.abs(this.vy));
-        //             //stops x & y from being at 0
-        //             if (this.vx === 0 || this.vy === 0) {
-        //                 generateSpeed();
-        //             }
-        //         }
-        //         generateSpeed();
-        //     }
-        // });
+        document.addEventListener('keydown', event => {
+            if (this.vx === 0 && this.vy === 0 && event.keyCode === controls) {
+                const generateSpeed = () => {
+                    while (this.vy === 0) {
+                        this.vy = Math.floor(Math.random() * 10 - 5); //a number between -5 and 5 //direction of the ball
+                    }
+                    this.vx = this.direction * (6 - Math.abs(this.vy));
+                    //stops x & y from being at 0
+                    if (this.vx === 0 || this.vy === 0) {
+                        generateSpeed();
+                    }
+                }
+                generateSpeed();
+            }
+        });
     }
 
     wallCollision() {
@@ -80,36 +80,36 @@ export default class Ball {
         }
     }
 
-    // goal(paddle) {
-    //     //incresement the score
-    //     paddle.score++;
-	// 	this.ping2.play();
-    //     if (paddle.score === 2) {
-    //         this.reset();
-    //     }
-    // }
-
-
-    // reset() {
-    //     this.x = this.boardWidth / 2;
-    //     this.y = this.boardHeight / 2;
-
-    //     this.vx = 0;
-    //     this.vy = 0;
-    // }
-    goal(player) {
-        player.score++;
-        this.reset();
+    goal(paddle) {
+        //incresement the score
+        paddle.score++;
+    	this.ping2.play();
+        if (paddle.score === 2) {
+            this.reset();
+        }
     }
+
+
     reset() {
         this.x = this.boardWidth / 2;
         this.y = this.boardHeight / 2;
+
+        this.vx = 0;
         this.vy = 0;
-        while (this.vy === 0) {
-            this.vy = Math.floor(Math.random() * 10 - 5);
-        }
-        this.vx = this.direction * (6 - Math.abs(this.vy));
     }
+    // goal(player) {
+    //     player.score++;
+    //     this.reset();
+    // }
+    // reset() {
+    //     this.x = this.boardWidth / 2;
+    //     this.y = this.boardHeight / 2;
+    //     this.vy = 0;
+    //     while (this.vy === 0) {
+    //         this.vy = Math.floor(Math.random() * 10 - 5);
+    //     }
+    //     this.vx = this.direction * (6 - Math.abs(this.vy));
+    // }
 
 
     render(svg, paddle1, paddle2) {
