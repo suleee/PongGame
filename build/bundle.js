@@ -497,11 +497,11 @@
 
 			this.board = new _Board2.default(this.width, this.height);
 
-			this.paddle1 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.boardGap, (this.height - this.paddleHeight) / 2, _settings.KEYS.a, _settings.KEYS.z, 'white', '7', '7'); //paddle: boardHeight, width, height, x, y
+			this.paddle1 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.boardGap, (this.height - this.paddleHeight) / 2, _settings.KEYS.a, _settings.KEYS.z, 'pink', '7', '7'); //paddle: boardHeight, width, height, x, y
 
-			this.paddle2 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down, 'pink', '7', '7');
+			this.paddle2 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down, 'orange', '7', '7');
 
-			this.ball = new _Ball2.default(10, this.width, this.height, 'orange', _settings.START.enter);
+			this.ball = new _Ball2.default(10, this.width, this.height, '#19535F', _settings.START.enter);
 
 			this.fireballs1 = new _FireBalls2.default(5, this.width, this.height, 'red', _settings.FIRE.s);
 			this.fireballs2 = new _FireBalls2.default(5, this.width, this.height, 'white', _settings.FIRE.s);
@@ -749,8 +749,8 @@
 	      rect.setAttributeNS(null, 'y', this.y);
 	      rect.setAttributeNS(null, 'width', this.width);
 	      rect.setAttributeNS(null, 'height', this.height);
-	      rect.setAttributeNS(null, 'stroke', 'black');
-	      rect.setAttributeNS(null, 'stroke-width', '1.5');
+	      rect.setAttributeNS(null, 'stroke', '#11414b');
+	      rect.setAttributeNS(null, 'stroke-width', '2');
 	      rect.setAttributeNS(null, 'rx', this.rx);
 	      rect.setAttributeNS(null, 'ry', this.ry);
 	      svg.appendChild(rect);
@@ -1039,8 +1039,8 @@
 	            ball.setAttributeNS(null, 'cx', this.x); //move this.boardWith/2 to reset //this will always in the center
 	            ball.setAttributeNS(null, 'cy', this.y); //y of the center point
 	            ball.setAttributeNS(null, 'r', this.radius);
-	            ball.setAttributeNS(null, 'stroke', 'black');
-	            ball.setAttributeNS(null, 'stroke-width', '1.5');
+	            ball.setAttributeNS(null, 'stroke', '#113840');
+	            ball.setAttributeNS(null, 'stroke-width', '2');
 	            svg.appendChild(ball);
 
 	            var rightGoal = this.x + this.radius >= this.boardWidth;

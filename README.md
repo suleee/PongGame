@@ -2,7 +2,7 @@
 
 A basic pong game using SVGs.
 
-![alt tag]()
+![alt tag](public/images/ponggame.png)
 
 
 ## Setup
