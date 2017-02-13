@@ -119,22 +119,20 @@ export default class Game {
 		this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
 		this.paddle2score.render(svg, 'p2: ' + this.paddle2.score);
 
-		this.multipleballs1.render(svg, this.paddle1, this.paddle2);
-		this.multipleballs2.render(svg, this.paddle1, this.paddle2);
-		this.multipleballs3.render(svg, this.paddle1, this.paddle2);
-
-		if (this.paddle1.score >= 2) {
-			this.winner = 'Player 1';
-			this.pause = true;
-	
-
-		} else if (this.paddle2.score >= 2) {
-			this.winner = 'Player 2';
-
-
+		if (this.paddle1.score >= 2 || this.paddle2.score >= 2) {
+			this.multipleballs1.render(svg, this.paddle1, this.paddle2);
+			this.multipleballs2.render(svg, this.paddle1, this.paddle2);
+			this.multipleballs3.render(svg, this.paddle1, this.paddle2);
 		}
 
+		if (this.paddle1.score >= 10) {
+			this.winner = 'Player 1';
+			this.pause = true;
+		} else if (this.paddle2.score >= 10) {
+			this.winner = 'Player 2';
+			this.pause = true;
 
+		}
 	}
 
 }
