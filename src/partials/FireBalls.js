@@ -39,17 +39,12 @@ export default class FireBalls {
 
         this.vx = 0;
         this.vy = 0;
-
     }
-
-
 
     render(svg) {
 
         this.x += this.vx; //this.x = this.x + this.vx;
         this.y += this.vy;
-
-        // this.paddleCollision(paddle1, paddle2);
 
         let ball = document.createElementNS(SVG_NS, 'circle');
         ball.setAttributeNS(null, 'fill', this.colorfill);
@@ -57,17 +52,6 @@ export default class FireBalls {
         ball.setAttributeNS(null, 'cy', this.y); //y of the center point
         ball.setAttributeNS(null, 'r', this.radius);
         svg.appendChild(ball);
-
-        // const rightGoal = this.x + this.radius >= this.boardWidth;
-        // const leftGoal = this.x - this.radius <= 0;
-
-        // if (rightGoal) {
-        //     this.goal(paddle1);
-        //     this.direction = 1;
-        // } else if (leftGoal) {
-        //     this.goal(paddle2);
-        //     this.direction = -1;
-        // }
     }
 
 }

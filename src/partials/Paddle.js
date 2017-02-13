@@ -36,9 +36,8 @@ export default class Paddle {
     this.y = Math.max(2, this.y - this.speed);
   }
   down() {
-    this.y = Math.min((this.boardHeight-2) - this.height, this.y + this.speed);
+    this.y = Math.min((this.boardHeight - 2) - this.height, this.y + this.speed);
   }
-
 
   coordinates(x, y, width, height) {
     let leftX = x;
@@ -48,19 +47,18 @@ export default class Paddle {
     return [leftX, rightX, topY, bottomY];
   }
 
-
   render(svg) {
     let rect = document.createElementNS(SVG_NS, 'rect');
-        rect.setAttributeNS(null, 'fill', this.color);
-        rect.setAttributeNS(null, 'x', this.x);
-        rect.setAttributeNS(null, 'y', this.y);
-        rect.setAttributeNS(null, 'width', this.width);
-        rect.setAttributeNS(null, 'height', this.height);
-        rect.setAttributeNS(null, 'stroke', 'black');
-        rect.setAttributeNS(null, 'stroke-width', '1.5');
-        rect.setAttributeNS(null, 'rx', this.rx);
-        rect.setAttributeNS(null, 'ry', this.ry);
-        svg.appendChild(rect);
+    rect.setAttributeNS(null, 'fill', this.color);
+    rect.setAttributeNS(null, 'x', this.x);
+    rect.setAttributeNS(null, 'y', this.y);
+    rect.setAttributeNS(null, 'width', this.width);
+    rect.setAttributeNS(null, 'height', this.height);
+    rect.setAttributeNS(null, 'stroke', 'black');
+    rect.setAttributeNS(null, 'stroke-width', '1.5');
+    rect.setAttributeNS(null, 'rx', this.rx);
+    rect.setAttributeNS(null, 'ry', this.ry);
+    svg.appendChild(rect);
 
   }
 }

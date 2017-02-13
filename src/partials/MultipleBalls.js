@@ -4,7 +4,7 @@ import {
 
 export default class MultipleBalls {
 
-    constructor(radius, boardWidth, boardHeight, colorfill, controls) {
+    constructor(radius, boardWidth, boardHeight, colorfill) {
         this.radius = radius;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
@@ -15,22 +15,6 @@ export default class MultipleBalls {
         this.ping2 = new Audio('public/sounds/pong-04.wav');
 
         this.reset();
-
-        // document.addEventListener('keydown', event => {
-        //     if (this.vx === 0 && this.vy === 0 && event.keyCode === controls) {
-        //         const generateSpeed = () => {
-        //             while (this.vy === 0) {
-        //                 this.vy = Math.floor(Math.random() * 10 - 5); //a number between -5 and 5 //direction of the ball
-        //             }
-        //             this.vx = this.direction * (6 - Math.abs(this.vy));
-        //             //stops x & y from being at 0
-        //             if (this.vx === 0 || this.vy === 0) {
-        //                 generateSpeed();
-        //             }
-        //         }
-        //         generateSpeed();
-        //     }
-        // });
     }
 
     wallCollision() {
@@ -75,32 +59,15 @@ export default class MultipleBalls {
             ) {
                 this.vx = -this.vx;
                 this.ping1.play();
-
             }
         }
     }
 
-    // goal(paddle) {
-    //     //incresement the score
-    //     paddle.score++;
-    // 	this.ping2.play();
-    //     if (paddle.score === 2) {
-    //         this.reset();
-    //     }
-    // }
-
-
-    // reset() {
-    //     this.x = this.boardWidth / 2;
-    //     this.y = this.boardHeight / 2;
-
-    //     this.vx = 0;
-    //     this.vy = 0;
-    // }
     goal(player) {
         player.score++;
         this.reset();
     }
+
     reset() {
         this.x = this.boardWidth / 2;
         this.y = this.boardHeight / 2;
@@ -113,7 +80,6 @@ export default class MultipleBalls {
 
 
     render(svg, paddle1, paddle2) {
-
         this.x += this.vx; //this.x = this.x + this.vx;
         this.y += this.vy;
 

@@ -15,7 +15,6 @@ import Ball from './Ball';
 import Score from './Score';
 import FireBalls from './FireBalls';
 
-
 export default class Game {
 
 	constructor(element, width, height) {
@@ -80,12 +79,6 @@ export default class Game {
 		this.paddle2score = new Score(348, 25, 25);
 	}
 
-	// ballcontrols(balls) {
-	// 	let balls = this.mutipleballs1, this.mutipleballs2, this.mutipleballs3;
-
-
-	// }
-
 	render() {
 		if (this.pause) {
 			return;
@@ -100,7 +93,6 @@ export default class Game {
 		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
 		this.gameElement.appendChild(svg);
 
-
 		this.board.render(svg);
 
 		this.fireballs1.render(svg);
@@ -108,12 +100,10 @@ export default class Game {
 		this.fireballs3.render(svg);
 		this.fireballs4.render(svg);
 
-
 		this.ball.render(svg, this.paddle1, this.paddle2);
 
 		this.paddle1.render(svg);
 		this.paddle2.render(svg);
-
 
 		// this.score1.score = this.pladdle1.score;//oldways
 		this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
@@ -131,7 +121,6 @@ export default class Game {
 		} else if (this.paddle2.score >= 11) {
 			this.winner = 'Player 2';
 			this.pause = true;
-
 		}
 	}
 

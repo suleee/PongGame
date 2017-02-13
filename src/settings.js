@@ -8,16 +8,20 @@ export const KEYS = {
   down: 40, // player 2 down key
   spaceBar: 32, // we'll use this later...
 }
+
 export const MULTIPLE = {
   t: 84, //mutiple balls
 }
+
 export const FIRE = {
   s: 83, //left fire ball
-  // left: 37, //right fire ball
+  left: 37, //right fire ball
 }
+
 export const START = {
   enter: 13 //mutiple balls
 }
+
 export const GAME = {
   boardGap: 10,
   paddleWidth: 8,

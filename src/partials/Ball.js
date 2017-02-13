@@ -75,7 +75,6 @@ export default class Ball {
             ) {
                 this.vx = -this.vx;
                 this.ping1.play();
-
             }
         }
     }
@@ -89,7 +88,6 @@ export default class Ball {
         }
     }
 
-
     reset() {
         this.x = this.boardWidth / 2;
         this.y = this.boardHeight / 2;
@@ -97,20 +95,6 @@ export default class Ball {
         this.vx = 0;
         this.vy = 0;
     }
-    // goal(player) {
-    //     player.score++;
-    //     this.reset();
-    // }
-    // reset() {
-    //     this.x = this.boardWidth / 2;
-    //     this.y = this.boardHeight / 2;
-    //     this.vy = 0;
-    //     while (this.vy === 0) {
-    //         this.vy = Math.floor(Math.random() * 10 - 5);
-    //     }
-    //     this.vx = this.direction * (6 - Math.abs(this.vy));
-    // }
-
 
     render(svg, paddle1, paddle2) {
 
