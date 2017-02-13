@@ -56,7 +56,7 @@ export default class Game {
 			'7',
 		);
 
-		this.ball = new Ball(10, this.width, this.height, '#19535F', START.enter);
+		this.ball = new Ball(10, this.width, this.height, 'white', START.enter);
 
 		this.fireballs1 = new FireBalls(5, this.width, this.height, 'red', FIRE.s);
 		this.fireballs2 = new FireBalls(5, this.width, this.height, 'white', FIRE.s);
