@@ -125,10 +125,10 @@ export default class Game {
 			this.multipleballs3.render(svg, this.paddle1, this.paddle2);
 		}
 
-		if (this.paddle1.score >= 15) {
+		if (this.paddle1.score >= 10) {
 			this.winner = 'Player 1';
 			this.pause = true;
-		} else if (this.paddle2.score >= 15) {
+		} else if (this.paddle2.score >= 10) {
 			this.winner = 'Player 2';
 			this.pause = true;
 

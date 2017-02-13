@@ -84,7 +84,7 @@ export default class Ball {
         //incresement the score
         paddle.score++;
         this.ping2.play();
-        if (paddle.score === 15) {
+        if (paddle.score === 10) {
             this.reset();
         }
     }
