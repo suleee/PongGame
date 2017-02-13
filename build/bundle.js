@@ -499,7 +499,7 @@
 
 			this.paddle1 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.boardGap, (this.height - this.paddleHeight) / 2, _settings.KEYS.a, _settings.KEYS.z, 'white', '7', '7'); //paddle: boardHeight, width, height, x, y
 
-			this.paddle2 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down, 'white', '7', '7');
+			this.paddle2 = new _Paddle2.default(this.height, this.paddleWidth + 4, this.paddleHeight + 20, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down, 'pink', '7', '7');
 
 			this.ball = new _Ball2.default(10, this.width, this.height, 'orange', _settings.START.enter);
 
@@ -781,7 +781,7 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var MultipleBalls = function () {
-	    function MultipleBalls(radius, boardWidth, boardHeight, colorfill, controls) {
+	    function MultipleBalls(radius, boardWidth, boardHeight, colorfill) {
 	        _classCallCheck(this, MultipleBalls);
 
 	        this.radius = radius;

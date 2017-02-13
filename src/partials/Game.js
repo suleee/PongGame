@@ -39,7 +39,7 @@ export default class Game {
 			((this.height - this.paddleHeight) / 2),
 			KEYS.a,
 			KEYS.z,
-			'white',
+			'pink',
 			'7',
 			'7',
 		); //paddle: boardHeight, width, height, x, y
@@ -51,12 +51,12 @@ export default class Game {
 			((this.height - this.paddleHeight) / 2),
 			KEYS.up,
 			KEYS.down,
-			'white',
+			'orange',
 			'7',
 			'7',
 		);
 
-		this.ball = new Ball(10, this.width, this.height, 'orange', START.enter);
+		this.ball = new Ball(10, this.width, this.height, '#19535F', START.enter);
 
 		this.fireballs1 = new FireBalls(5, this.width, this.height, 'red', FIRE.s);
 		this.fireballs2 = new FireBalls(5, this.width, this.height, 'white', FIRE.s);

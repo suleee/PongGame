@@ -54,8 +54,8 @@ export default class Paddle {
     rect.setAttributeNS(null, 'y', this.y);
     rect.setAttributeNS(null, 'width', this.width);
     rect.setAttributeNS(null, 'height', this.height);
-    rect.setAttributeNS(null, 'stroke', 'black');
-    rect.setAttributeNS(null, 'stroke-width', '1.5');
+    rect.setAttributeNS(null, 'stroke', '#11414b');
+    rect.setAttributeNS(null, 'stroke-width', '2');
     rect.setAttributeNS(null, 'rx', this.rx);
     rect.setAttributeNS(null, 'ry', this.ry);
     svg.appendChild(rect);

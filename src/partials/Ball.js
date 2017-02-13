@@ -109,8 +109,8 @@ export default class Ball {
         ball.setAttributeNS(null, 'cx', this.x); //move this.boardWith/2 to reset //this will always in the center
         ball.setAttributeNS(null, 'cy', this.y); //y of the center point
         ball.setAttributeNS(null, 'r', this.radius);
-        ball.setAttributeNS(null, 'stroke', 'black');
-        ball.setAttributeNS(null, 'stroke-width', '1.5');
+        ball.setAttributeNS(null, 'stroke', '#113840');
+        ball.setAttributeNS(null, 'stroke-width', '2');
         svg.appendChild(ball);
 
         const rightGoal = this.x + this.radius >= this.boardWidth;
