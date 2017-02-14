@@ -38,7 +38,7 @@ point, a player gets a point once the opponent misses a ball.
 The game can be played with two human players, or one player 
 against a computer controlled paddle.
 
-## [Stretch Goal Note]
+##Stretch Goal Note
 - Make it prettier.
 - Trigger multiple balls.
 - Create balls with special effects (different speeds, sizes and color).
@@ -46,3 +46,6 @@ against a computer controlled paddle.
 - Fire a shot from a paddle on 's' key press.
 - Declare a winner at a final score.
 
+##what I have learned
+- learn how to render SVGs by using Javascript and HTML
+- learn ES2015 class constructor and methods
