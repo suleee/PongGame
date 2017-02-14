@@ -10,7 +10,6 @@ export default class Score {
         this.size = size;
         this.fill = fill;
         this.player = player;
-
     }
 
     render(svg, scorecount) {

@@ -7,7 +7,6 @@ export const KEYS = {
   up: 38, // player 2 up key
   down: 40, // player 2 down key
   spaceBar: 32, // we'll use this later...
-  r: 82
 }
 
 export const FIRE = {
@@ -16,7 +15,7 @@ export const FIRE = {
 }
 
 export const START = {
-  enter: 13 //mutiple balls
+  enter: 13 //game start
 }
 
 export const GAME = {

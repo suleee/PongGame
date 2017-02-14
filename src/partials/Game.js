@@ -9,11 +9,9 @@ import {
 
 import Board from './Board';
 import Paddle from './Paddle';
-// import MultipleBalls from './MultipleBalls';
 import Ball from './Ball';
 import Score from './Score';
 import FireBalls from './FireBalls';
-// import Gameover from './Gameover';
 
 
 export default class Game {
@@ -127,9 +125,13 @@ export default class Game {
 
 
 
-		if (this.paddle1.score >= 2 || this.paddle2.score >= 2) {
+		if (this.paddle1.score >= 3 || this.paddle2.score >= 3) {
 			this.pasue = true;
 			this.multipleballs1.render(svg, this.paddle1, this.paddle2);
+		} 
+		
+		if (this.paddle1.score >= 6 || this.paddle2.score >= 6) {
+			this.pasue = true;
 			this.multipleballs2.render(svg, this.paddle1, this.paddle2);
 			this.multipleballs3.render(svg, this.paddle1, this.paddle2);
 		}
@@ -171,7 +173,6 @@ export default class Game {
 						this.paddle1.score = 0;
 						this.paddle2.score = 0;
 						this.pause = false;
-
 				}
 			});
 		}

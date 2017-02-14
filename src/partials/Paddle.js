@@ -18,7 +18,6 @@ export default class Paddle {
     this.ry = ry;
 
     document.addEventListener('keydown', event => {
-      // console.log(event.keyCode);
       switch (event.keyCode) {
         case up:
           this.up();
@@ -28,7 +27,6 @@ export default class Paddle {
           break;
       }
     });
-
   }
 
   //method
@@ -59,6 +57,5 @@ export default class Paddle {
     rect.setAttributeNS(null, 'rx', this.rx);
     rect.setAttributeNS(null, 'ry', this.ry);
     svg.appendChild(rect);
-
   }
 }

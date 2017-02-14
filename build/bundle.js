@@ -448,6 +448,9 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	// ex) import HELLO { SVG_NS, KEYS } from '../settings';
 
+	// import MultipleBalls from './MultipleBalls';
+
+
 	var _settings = __webpack_require__(10);
 
 	var _Board = __webpack_require__(11);
@@ -457,10 +460,6 @@
 	var _Paddle = __webpack_require__(12);
 
 	var _Paddle2 = _interopRequireDefault(_Paddle);
-
-	var _MultipleBalls = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./MultipleBalls\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _MultipleBalls2 = _interopRequireDefault(_MultipleBalls);
 
 	var _Ball = __webpack_require__(13);
 
@@ -474,13 +473,12 @@
 
 	var _FireBalls2 = _interopRequireDefault(_FireBalls);
 
-	var _Gameover = __webpack_require__(16);
-
-	var _Gameover2 = _interopRequireDefault(_Gameover);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	// import Gameover from './Gameover';
+
 
 	var Game = function () {
 		function Game(element, width, height) {
@@ -500,6 +498,7 @@
 
 			this.gameElement = document.getElementById(this.element);
 			this.pause = false;
+			this.enter = true;
 
 			this.board = new _Board2.default(this.width, this.height);
 
@@ -514,9 +513,9 @@
 			this.fireballs3 = new _FireBalls2.default(5, this.width, this.height, 'red', _settings.FIRE.s);
 			this.fireballs4 = new _FireBalls2.default(5, this.width, this.height, 'white', _settings.FIRE.s);
 
-			this.multipleballs1 = new _Ball2.default(6, this.width, this.height, 'yellow', _settings.MULTIPLE.t);
-			this.multipleballs2 = new _Ball2.default(8, this.width, this.height, 'green', _settings.MULTIPLE.t);
-			this.multipleballs3 = new _Ball2.default(4, this.width, this.height, 'pink', _settings.MULTIPLE.t);
+			this.multipleballs1 = new _Ball2.default(6, this.width, this.height, 'yellow');
+			this.multipleballs2 = new _Ball2.default(8, this.width, this.height, 'green');
+			this.multipleballs3 = new _Ball2.default(4, this.width, this.height, 'pink');
 
 			document.addEventListener('keydown', function (event) {
 				switch (event.keyCode) {
@@ -526,8 +525,14 @@
 				}
 			});
 
-			this.paddle1score = new _Score2.default(230, 25, 25);
-			this.paddle2score = new _Score2.default(348, 25, 25);
+			this.paddle1score = new _Score2.default(230, 25, 25, this.fill = 'white');
+			this.paddle2score = new _Score2.default(348, 25, 25, this.fill = 'white');
+			this.win = new _Score2.default(this.width / 2 - 178, this.height / 2 + 20, 80, '#FF3F00');
+			this.win2 = new _Score2.default(this.width / 2 - 180, this.height / 2 + 18, 80, '#1F0800');
+			this.win3 = new _Score2.default(this.width / 2 - 174, this.height / 2 + 25, 80, '#1F0800');
+			this.win4 = new _Score2.default(this.width / 2 - 180, this.height / 2 + 23, 80, '#1F0800');
+			this.win5 = new _Score2.default(this.width / 2 - 174, this.height / 2 + 18, 80, '#1F0800');
+			this.win6 = new _Score2.default(this.width / 2 - 180, this.height / 2 + 25, 80, '#1F0800');
 		}
 
 		_createClass(Game, [{
@@ -564,35 +569,55 @@
 				this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
 				this.paddle2score.render(svg, 'p2: ' + this.paddle2.score);
 
-				this.win = new _Gameover2.default(this.width / 2 - 50, this.height / 2, 20, this.fill = '#FF0');
-
-				if (this.paddle1.score >= 2 || this.paddle2.score >= 2) {
+				if (this.paddle1.score >= 3 || this.paddle2.score >= 3) {
+					this.pasue = true;
 					this.multipleballs1.render(svg, this.paddle1, this.paddle2);
+				} else if (this.paddle1.score >= 6 || this.paddle2.score >= 6) {
+					this.pasue = true;
 					this.multipleballs2.render(svg, this.paddle1, this.paddle2);
 					this.multipleballs3.render(svg, this.paddle1, this.paddle2);
 				}
 
-				if (this.paddle1.score >= 11) {
+				if (this.paddle1.score >= 10) {
 					this.winner = 'Player 1';
+					this.win2.render(svg, 'p1 wins');
+					this.win3.render(svg, 'p1 wins');
+					this.win4.render(svg, 'p1 wins');
+					this.win5.render(svg, 'p1 wins');
+					this.win6.render(svg, 'p1 wins');
 					this.win.render(svg, 'p1 wins');
 
 					this.pause = true;
 					this.ping2.play();
 					document.addEventListener('keydown', function (event) {
 						switch (event.keyCode) {
-							case _settings.KEYS.refresh:
+							case _settings.START.enter:
 								_this2.paddle1.score = 0;
 								_this2.paddle2.score = 0;
-								// this.newball = false;
 								_this2.pause = false;
 
 						}
 					});
-				} else if (this.paddle2.score >= 11) {
+				} else if (this.paddle2.score >= 10) {
 					this.winner = 'Player 2';
+					this.win2.render(svg, 'p2 wins');
+					this.win3.render(svg, 'p2 wins');
+					this.win4.render(svg, 'p2 wins');
+					this.win5.render(svg, 'p2 wins');
+					this.win6.render(svg, 'p2 wins');
+					this.win.render(svg, 'p2 wins');
 
 					this.pause = true;
 					this.ping2.play();
+					document.addEventListener('keydown', function (event) {
+						switch (event.keyCode) {
+							case _settings.START.enter:
+								_this2.paddle1.score = 0;
+								_this2.paddle2.score = 0;
+								_this2.pause = false;
+
+						}
+					});
 				}
 			}
 		}]);
@@ -620,11 +645,8 @@
 	  up: 38, // player 2 up key
 	  down: 40, // player 2 down key
 	  spaceBar: 32, // we'll use this later...
-	  refresh: 82
+	  r: 82
 	};
-
-	var MULTIPLE = exports.MULTIPLE = {
-	  t: 84 };
 
 	var FIRE = exports.FIRE = {
 	  s: 83, //left fire ball
@@ -808,9 +830,7 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Ball = function () {
-	    function Ball(radius, boardWidth, boardHeight, colorfill, controls) {
-	        var _this = this;
-
+	    function Ball(radius, boardWidth, boardHeight, colorfill) {
 	        _classCallCheck(this, Ball);
 
 	        this.radius = radius;
@@ -823,24 +843,6 @@
 	        this.ping3 = new Audio('public/sounds/pong-01.wav');
 
 	        this.reset();
-
-	        document.addEventListener('keydown', function (event) {
-	            if (_this.vx === 0 && _this.vy === 0 && event.keyCode === controls) {
-	                (function () {
-	                    var generateSpeed = function generateSpeed() {
-	                        while (_this.vy === 0) {
-	                            _this.vy = Math.floor(Math.random() * 10 - 5); //a number between -5 and 5 //direction of the ball
-	                        }
-	                        _this.vx = _this.direction * (6 - Math.abs(_this.vy));
-	                        //stops x & y from being at 0
-	                        if (_this.vx === 0 || _this.vy === 0) {
-	                            generateSpeed();
-	                        }
-	                    };
-	                    generateSpeed();
-	                })();
-	            }
-	        });
 	    }
 
 	    _createClass(Ball, [{
@@ -912,8 +914,12 @@
 	            this.x = this.boardWidth / 2;
 	            this.y = this.boardHeight / 2;
 
-	            this.vx = 0;
+	            // this.vx = 0;
 	            this.vy = 0;
+	            while (this.vy === 0) {
+	                this.vy = Math.floor(Math.random() * 10 - 5); //a number between -5 and 5 //direction of the ball
+	            }
+	            this.vx = this.direction * (6 - Math.abs(this.vy));
 	        }
 	    }, {
 	        key: 'render',
@@ -969,24 +975,27 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Score = function () {
-	    function Score(x, y, size) {
+	    function Score(x, y, size, fill, player) {
 	        _classCallCheck(this, Score);
 
 	        this.x = x;
 	        this.y = y;
 	        this.size = size;
+	        this.fill = fill;
+	        this.player = player;
 	    }
 
 	    _createClass(Score, [{
 	        key: 'render',
 	        value: function render(svg, scorecount) {
-
+	            // let score = document.createElementNS(SVG_NS, 'text');
 	            var score = document.createElementNS(_settings.SVG_NS, 'text');
 	            score.setAttributeNS(null, 'x', this.x); //move this.boardWith/2 to reset //this will always in the center
 	            score.setAttributeNS(null, 'y', this.y); //y of the center point
 	            score.setAttributeNS(null, 'font-family', 'Silkscreen Web');
 	            score.setAttributeNS(null, 'font-size', this.size);
-	            score.setAttributeNS(null, 'fill', 'white');
+	            score.setAttributeNS(null, 'fill', this.fill);
+
 	            score.textContent = scorecount; //scorecount becasue I already named the let score 
 	            svg.appendChild(score);
 	        }
@@ -1077,52 +1086,6 @@
 	}();
 
 	exports.default = FireBalls;
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _settings = __webpack_require__(10);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var Score = function () {
-	    function Score(x, y, size, fill, player) {
-	        _classCallCheck(this, Score);
-
-	        this.x = x;
-	        this.y = y;
-	        this.size = size;
-	        this.fill = fill;
-	        this.player = player;
-	    }
-
-	    _createClass(Score, [{
-	        key: 'render',
-	        value: function render(svg, gg) {
-	            var gameover = document.createElementNS(_settings.SVG_NS, 'text');
-	            gameover.setAttributeNS(null, 'x', this.x);
-	            gameover.setAttributeNS(null, 'y', this.y);
-	            gameover.setAttributeNS(null, 'font-family', 'Silkscreen Web');
-	            gameover.setAttributeNS(null, 'font-size', this.size);
-	            gameover.setAttributeNS(null, 'fill', this.fill);
-	            gameover.innerHTML = gg;
-	            svg.appendChild(gameover);
-	        }
-	    }]);
-
-	    return Score;
-	}();
-
-	exports.default = Score;
 
 /***/ }
 /******/ ]);

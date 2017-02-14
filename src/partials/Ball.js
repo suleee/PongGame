@@ -15,22 +15,6 @@ export default class Ball {
         this.ping3 = new Audio('public/sounds/pong-01.wav');
 
         this.reset();
-
-        // document.addEventListener('keydown', event => {
-        //     if (this.vx === 0 && this.vy === 0 && event.keyCode === controls) {
-        //         const generateSpeed = () => {
-        //             while (this.vy === 0) {
-        //                 this.vy = Math.floor(Math.random() * 10 - 5); //a number between -5 and 5 //direction of the ball
-        //             }
-        //             this.vx = this.direction * (6 - Math.abs(this.vy));
-        //             //stops x & y from being at 0
-        //             if (this.vx === 0 || this.vy === 0) {
-        //                 generateSpeed();
-        //             }
-        //         }
-        //         generateSpeed();
-        //     }
-        // });
     }
 
     wallCollision() {
@@ -94,7 +78,6 @@ export default class Ball {
         this.x = this.boardWidth / 2;
         this.y = this.boardHeight / 2;
 
-        // this.vx = 0;
         this.vy = 0;
         while (this.vy === 0) {
             this.vy = Math.floor(Math.random() * 10 - 5); //a number between -5 and 5 //direction of the ball
@@ -103,7 +86,6 @@ export default class Ball {
     }
 
     render(svg, paddle1, paddle2) {
-
         this.x += this.vx; //this.x = this.x + this.vx;
         this.y += this.vy;
 
