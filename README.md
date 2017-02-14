@@ -35,8 +35,7 @@ A basic pong game using SVGs.
 The game features two paddles, a ball and balls, the goal is to 
 defeat your opponent by being the first one to gain 10 
 point, a player gets a point once the opponent misses a ball. 
-The game can be played with two human players, or one player 
-against a computer controlled paddle.
+The game can be played with two human players.
 
 ##Stretch Goal Note
 - Make it prettier.
