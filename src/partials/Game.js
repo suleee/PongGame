@@ -127,14 +127,14 @@ export default class Game {
 
 
 
-		if (this.paddle1.score >= 1 || this.paddle2.score >= 1) {
+		if (this.paddle1.score >= 2 || this.paddle2.score >= 2) {
 			this.pasue = true;
 			this.multipleballs1.render(svg, this.paddle1, this.paddle2);
 			this.multipleballs2.render(svg, this.paddle1, this.paddle2);
 			this.multipleballs3.render(svg, this.paddle1, this.paddle2);
 		}
 
-		if (this.paddle1.score >= 3) {
+		if (this.paddle1.score >= 10) {
 			this.winner = 'Player 1';
 			this.win2.render(svg, 'p1 wins');
 			this.win3.render(svg, 'p1 wins');
@@ -154,7 +154,7 @@ export default class Game {
 
 				}
 			});
-		} else if (this.paddle2.score >= 2) {
+		} else if (this.paddle2.score >= 10) {
 			this.winner = 'Player 2';
 			this.win2.render(svg, 'p2 wins');
 			this.win3.render(svg, 'p2 wins');

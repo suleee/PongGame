@@ -2,7 +2,7 @@
 
 A basic pong game using SVGs.
 
-![alt tag](public/images/ponggame.png)
+![alt tag](public/images/pong.png)
 
 
 ## Setup
@@ -28,20 +28,21 @@ A basic pong game using SVGs.
 * ▼: down
 
 **Share code:**
-* enter: start game
+* enter: start game/ re-start game
 * space bar: pause the game
-* refresh: re-start the game 
 
 ##How to Play
-
+The game features two paddles, a ball and balls, the goal is to 
+defeat your opponent by being the first one to gain 10 
+point, a player gets a point once the opponent misses a ball. 
+The game can be played with two human players, or one player 
+against a computer controlled paddle.
 
 ## [Stretch Goal Note]
-- Make it prettier
-- Trigger multiple balls
-- Create balls with special effects(sizes and color) 
-- Trigger speed changes and size of paddles
-- Fire a shots from left side on 's' key press
-- Pause the action when the score get 10  
+- Make it prettier.
+- Trigger multiple balls.
+- Create balls with special effects (different speeds, sizes and color).
+- Trigger speed changes or size changes of paddles.
+- Fire a shot from a paddle on 's' key press.
+- Declare a winner at a final score.
 
-##what I learned
-- 
