@@ -3,8 +3,7 @@ import {
 	KEYS,
 	GAME,
 	START,
-	FIRE,
-	MULTIPLE
+	FIRE
 } from '../settings';
 // ex) import HELLO { SVG_NS, KEYS } from '../settings';
 
@@ -32,6 +31,7 @@ export default class Game {
 
 		this.gameElement = document.getElementById(this.element);
 		this.pause = false;
+		this.enter = true;
 
 		this.board = new Board(this.width, this.height);
 
@@ -67,9 +67,9 @@ export default class Game {
 		this.fireballs3 = new FireBalls(5, this.width, this.height, 'red', FIRE.s);
 		this.fireballs4 = new FireBalls(5, this.width, this.height, 'white', FIRE.s, );
 
-		this.multipleballs1 = new Ball(6, this.width, this.height, 'yellow', MULTIPLE.t);
-		this.multipleballs2 = new Ball(8, this.width, this.height, 'green', MULTIPLE.t);
-		this.multipleballs3 = new Ball(4, this.width, this.height, 'pink', MULTIPLE.t);
+		this.multipleballs1 = new Ball(6, this.width, this.height, 'yellow');
+		this.multipleballs2 = new Ball(8, this.width, this.height, 'green');
+		this.multipleballs3 = new Ball(4, this.width, this.height, 'pink');
 
 		document.addEventListener('keydown', event => {
 			switch (event.keyCode) {
@@ -79,9 +79,14 @@ export default class Game {
 			}
 		});
 
-		this.paddle1score = new Score(230, 25, 25, this.fill='white');
-		this.paddle2score = new Score(348, 25, 25, this.fill='white');
-		this.win = new Score((this.width / 2) - 180, (this.height / 2), 80, 'black', 'white', '2');
+		this.paddle1score = new Score(230, 25, 25, this.fill = 'white');
+		this.paddle2score = new Score(348, 25, 25, this.fill = 'white');
+		this.win = new Score((this.width / 2) - 178, (this.height / 2) + 20, 80, '#FF3F00');
+		this.win2 = new Score((this.width / 2) - 180, (this.height / 2) + 18, 80, '#1F0800');
+		this.win3 = new Score((this.width / 2) - 174, (this.height / 2) + 25, 80, '#1F0800');
+		this.win4 = new Score((this.width / 2) - 180, (this.height / 2) + 23, 80, '#1F0800');
+		this.win5 = new Score((this.width / 2) - 174, (this.height / 2) + 18, 80, '#1F0800');
+		this.win6 = new Score((this.width / 2) - 180, (this.height / 2) + 25, 80, '#1F0800');
 
 	}
 
@@ -106,7 +111,12 @@ export default class Game {
 		this.fireballs3.render(svg);
 		this.fireballs4.render(svg);
 
+
+
 		this.ball.render(svg, this.paddle1, this.paddle2);
+
+
+
 
 		this.paddle1.render(svg);
 		this.paddle2.render(svg);
@@ -115,9 +125,9 @@ export default class Game {
 		this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
 		this.paddle2score.render(svg, 'p2: ' + this.paddle2.score);
 
-		
 
-		if (this.paddle1.score >= 2 || this.paddle2.score >= 2) {
+
+		if (this.paddle1.score >= 1 || this.paddle2.score >= 1) {
 			this.pasue = true;
 			this.multipleballs1.render(svg, this.paddle1, this.paddle2);
 			this.multipleballs2.render(svg, this.paddle1, this.paddle2);
@@ -126,6 +136,11 @@ export default class Game {
 
 		if (this.paddle1.score >= 3) {
 			this.winner = 'Player 1';
+			this.win2.render(svg, 'p1 wins');
+			this.win3.render(svg, 'p1 wins');
+			this.win4.render(svg, 'p1 wins');
+			this.win5.render(svg, 'p1 wins');
+			this.win6.render(svg, 'p1 wins');
 			this.win.render(svg, 'p1 wins');
 
 			this.pause = true;
@@ -135,23 +150,26 @@ export default class Game {
 					case START.enter:
 						this.paddle1.score = 0;
 						this.paddle2.score = 0;
-						// this.newball = false;
 						this.pause = false;
 
 				}
 			});
-		} else if (this.paddle2.score >= 3) {
+		} else if (this.paddle2.score >= 2) {
 			this.winner = 'Player 2';
+			this.win2.render(svg, 'p2 wins');
+			this.win3.render(svg, 'p2 wins');
+			this.win4.render(svg, 'p2 wins');
+			this.win5.render(svg, 'p2 wins');
+			this.win6.render(svg, 'p2 wins');
 			this.win.render(svg, 'p2 wins');
 
 			this.pause = true;
 			this.ping2.play();
 			document.addEventListener('keydown', event => {
 				switch (event.keyCode) {
-					case KEYS.refresh:
+					case START.enter:
 						this.paddle1.score = 0;
 						this.paddle2.score = 0;
-						// this.newball = false;
 						this.pause = false;
 
 				}
