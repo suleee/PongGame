@@ -13,3 +13,4 @@ const game = new Game('game', 650, 300);
 
 })(); //immiately call, this is an argurment of gameLoop
 
+
