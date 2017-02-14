@@ -7,6 +7,7 @@ export const KEYS = {
   up: 38, // player 2 up key
   down: 40, // player 2 down key
   spaceBar: 32, // we'll use this later...
+  refresh: 82,
 }
 
 export const MULTIPLE = {
