@@ -448,9 +448,6 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	// ex) import HELLO { SVG_NS, KEYS } from '../settings';
 
-	// import MultipleBalls from './MultipleBalls';
-
-
 	var _settings = __webpack_require__(10);
 
 	var _Board = __webpack_require__(11);
@@ -460,6 +457,10 @@
 	var _Paddle = __webpack_require__(12);
 
 	var _Paddle2 = _interopRequireDefault(_Paddle);
+
+	var _MultipleBalls = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./MultipleBalls\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _MultipleBalls2 = _interopRequireDefault(_MultipleBalls);
 
 	var _Ball = __webpack_require__(13);
 
@@ -513,9 +514,9 @@
 			this.fireballs3 = new _FireBalls2.default(5, this.width, this.height, 'red', _settings.FIRE.s);
 			this.fireballs4 = new _FireBalls2.default(5, this.width, this.height, 'white', _settings.FIRE.s);
 
-			// this.multipleballs1 = new MultipleBalls(6, this.width, this.height, 'yellow', MULTIPLE.t);
-			// this.multipleballs2 = new MultipleBalls(8, this.width, this.height, 'green', MULTIPLE.t);
-			// this.multipleballs3 = new MultipleBalls(4, this.width, this.height, 'pink', MULTIPLE.t);
+			this.multipleballs1 = new _Ball2.default(6, this.width, this.height, 'yellow', _settings.MULTIPLE.t);
+			this.multipleballs2 = new _Ball2.default(8, this.width, this.height, 'green', _settings.MULTIPLE.t);
+			this.multipleballs3 = new _Ball2.default(4, this.width, this.height, 'pink', _settings.MULTIPLE.t);
 
 			document.addEventListener('keydown', function (event) {
 				switch (event.keyCode) {

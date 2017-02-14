@@ -3,7 +3,8 @@ import {
 	KEYS,
 	GAME,
 	START,
-	FIRE
+	FIRE,
+	MULTIPLE
 } from '../settings';
 // ex) import HELLO { SVG_NS, KEYS } from '../settings';
 
@@ -13,7 +14,7 @@ import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
 import FireBalls from './FireBalls';
-import Gameover from './Gameover';
+// import Gameover from './Gameover';
 
 
 export default class Game {
@@ -66,9 +67,9 @@ export default class Game {
 		this.fireballs3 = new FireBalls(5, this.width, this.height, 'red', FIRE.s);
 		this.fireballs4 = new FireBalls(5, this.width, this.height, 'white', FIRE.s, );
 
-		// this.multipleballs1 = new MultipleBalls(6, this.width, this.height, 'yellow', MULTIPLE.t);
-		// this.multipleballs2 = new MultipleBalls(8, this.width, this.height, 'green', MULTIPLE.t);
-		// this.multipleballs3 = new MultipleBalls(4, this.width, this.height, 'pink', MULTIPLE.t);
+		this.multipleballs1 = new Ball(6, this.width, this.height, 'yellow', MULTIPLE.t);
+		this.multipleballs2 = new Ball(8, this.width, this.height, 'green', MULTIPLE.t);
+		this.multipleballs3 = new Ball(4, this.width, this.height, 'pink', MULTIPLE.t);
 
 		document.addEventListener('keydown', event => {
 			switch (event.keyCode) {
@@ -80,6 +81,7 @@ export default class Game {
 
 		this.paddle1score = new Score(230, 25, 25);
 		this.paddle2score = new Score(348, 25, 25);
+
 	}
 
 	render() {
@@ -112,18 +114,19 @@ export default class Game {
 		this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
 		this.paddle2score.render(svg, 'p2: ' + this.paddle2.score);
 
-		this.win = new Gameover((this.width / 2)-50, (this.height / 2), 20, this.fill = '#FF0');
+		this.win = new Score((this.width / 2) - 100, (this.height / 2), 50, this.fill = 'white');
 
 		if (this.paddle1.score >= 2 || this.paddle2.score >= 2) {
+			this.pasue = true;
 			this.multipleballs1.render(svg, this.paddle1, this.paddle2);
 			this.multipleballs2.render(svg, this.paddle1, this.paddle2);
 			this.multipleballs3.render(svg, this.paddle1, this.paddle2);
 		}
 
-		if (this.paddle1.score >= 11) {
+		if (this.paddle1.score >= 3) {
 			this.winner = 'Player 1';
 			this.win.render(svg, 'p1 wins');
-			
+
 			this.pause = true;
 			this.ping2.play();
 			document.addEventListener('keydown', event => {
@@ -136,11 +139,22 @@ export default class Game {
 
 				}
 			});
-		} else if (this.paddle2.score >= 11) {
+		} else if (this.paddle2.score >= 3) {
 			this.winner = 'Player 2';
-			
+			this.win.render(svg, 'p2 wins');
+
 			this.pause = true;
 			this.ping2.play();
+			document.addEventListener('keydown', event => {
+				switch (event.keyCode) {
+					case KEYS.refresh:
+						this.paddle1.score = 0;
+						this.paddle2.score = 0;
+						// this.newball = false;
+						this.pause = false;
+
+				}
+			});
 		}
 	}
 
