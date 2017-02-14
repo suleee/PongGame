@@ -79,8 +79,9 @@ export default class Game {
 			}
 		});
 
-		this.paddle1score = new Score(230, 25, 25);
-		this.paddle2score = new Score(348, 25, 25);
+		this.paddle1score = new Score(230, 25, 25, this.fill='white');
+		this.paddle2score = new Score(348, 25, 25, this.fill='white');
+		this.win = new Score((this.width / 2) - 180, (this.height / 2), 80, 'black', 'white', '2');
 
 	}
 
@@ -114,7 +115,7 @@ export default class Game {
 		this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
 		this.paddle2score.render(svg, 'p2: ' + this.paddle2.score);
 
-		this.win = new Score((this.width / 2) - 100, (this.height / 2), 50, this.fill = 'white');
+		
 
 		if (this.paddle1.score >= 2 || this.paddle2.score >= 2) {
 			this.pasue = true;
@@ -131,7 +132,7 @@ export default class Game {
 			this.ping2.play();
 			document.addEventListener('keydown', event => {
 				switch (event.keyCode) {
-					case KEYS.refresh:
+					case START.enter:
 						this.paddle1.score = 0;
 						this.paddle2.score = 0;
 						// this.newball = false;
