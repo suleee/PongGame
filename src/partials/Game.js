@@ -13,7 +13,6 @@ import Ball from './Ball';
 import Score from './Score';
 import FireBalls from './FireBalls';
 
-
 export default class Game {
 
 	constructor(element, width, height) {
@@ -109,12 +108,7 @@ export default class Game {
 		this.fireballs3.render(svg);
 		this.fireballs4.render(svg);
 
-
-
 		this.ball.render(svg, this.paddle1, this.paddle2);
-
-
-
 
 		this.paddle1.render(svg);
 		this.paddle2.render(svg);
@@ -122,8 +116,6 @@ export default class Game {
 		// this.score1.score = this.pladdle1.score;//oldways
 		this.paddle1score.render(svg, 'p1: ' + this.paddle1.score);
 		this.paddle2score.render(svg, 'p2: ' + this.paddle2.score);
-
-
 
 		if (this.paddle1.score >= 3 || this.paddle2.score >= 3) {
 			this.pasue = true;
@@ -153,7 +145,6 @@ export default class Game {
 						this.paddle1.score = 0;
 						this.paddle2.score = 0;
 						this.pause = false;
-
 				}
 			});
 		} else if (this.paddle2.score >= 10) {
