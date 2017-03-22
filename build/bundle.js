@@ -448,9 +448,6 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	// ex) import HELLO { SVG_NS, KEYS } from '../settings';
 
-	// import MultipleBalls from './MultipleBalls';
-
-
 	var _settings = __webpack_require__(10);
 
 	var _Board = __webpack_require__(11);
@@ -476,9 +473,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	// import Gameover from './Gameover';
-
 
 	var Game = function () {
 		function Game(element, width, height) {
@@ -572,7 +566,9 @@
 				if (this.paddle1.score >= 3 || this.paddle2.score >= 3) {
 					this.pasue = true;
 					this.multipleballs1.render(svg, this.paddle1, this.paddle2);
-				} else if (this.paddle1.score >= 6 || this.paddle2.score >= 6) {
+				}
+
+				if (this.paddle1.score >= 6 || this.paddle2.score >= 6) {
 					this.pasue = true;
 					this.multipleballs2.render(svg, this.paddle1, this.paddle2);
 					this.multipleballs3.render(svg, this.paddle1, this.paddle2);
@@ -595,7 +591,6 @@
 								_this2.paddle1.score = 0;
 								_this2.paddle2.score = 0;
 								_this2.pause = false;
-
 						}
 					});
 				} else if (this.paddle2.score >= 10) {
@@ -615,7 +610,6 @@
 								_this2.paddle1.score = 0;
 								_this2.paddle2.score = 0;
 								_this2.pause = false;
-
 						}
 					});
 				}
@@ -644,16 +638,14 @@
 	  z: 90, // player 1 down key
 	  up: 38, // player 2 up key
 	  down: 40, // player 2 down key
-	  spaceBar: 32, // we'll use this later...
-	  r: 82
-	};
+	  spaceBar: 32 };
 
 	var FIRE = exports.FIRE = {
 	  s: 83, //left fire ball
 	  left: 37 };
 
 	var START = exports.START = {
-	  enter: 13 //mutiple balls
+	  enter: 13 //game start
 	};
 
 	var GAME = exports.GAME = {
@@ -755,7 +747,6 @@
 	    this.ry = ry;
 
 	    document.addEventListener('keydown', function (event) {
-	      // console.log(event.keyCode);
 	      switch (event.keyCode) {
 	        case up:
 	          _this.up();
@@ -914,7 +905,6 @@
 	            this.x = this.boardWidth / 2;
 	            this.y = this.boardHeight / 2;
 
-	            // this.vx = 0;
 	            this.vy = 0;
 	            while (this.vy === 0) {
 	                this.vy = Math.floor(Math.random() * 10 - 5); //a number between -5 and 5 //direction of the ball
@@ -924,7 +914,6 @@
 	    }, {
 	        key: 'render',
 	        value: function render(svg, paddle1, paddle2) {
-
 	            this.x += this.vx; //this.x = this.x + this.vx;
 	            this.y += this.vy;
 

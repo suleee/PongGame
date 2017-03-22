@@ -14,7 +14,6 @@ import Score from './Score';
 import FireBalls from './FireBalls';
 
 export default class Game {
-
 	constructor(element, width, height) {
 		this.element = element;
 		this.width = width; //view point
